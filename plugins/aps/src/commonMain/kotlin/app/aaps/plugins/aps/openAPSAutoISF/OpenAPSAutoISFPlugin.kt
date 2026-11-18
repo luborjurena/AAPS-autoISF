@@ -446,6 +446,7 @@ open class OpenAPSAutoISFPlugin(
         ).also {
             autoIsfFactors.smbOn = determineBasalAutoISF.lastSmbOn
             autoIsfFactors.smbOffReason = determineBasalAutoISF.lastSmbOffReason
+            autoIsfFactors.smbRatio = smbRatio
             autoIsfFactors.steps15 = steps?.last15Sum
             autoIsfFactors.steps180 = steps?.takeUnless { counts -> counts.fromWatch }?.let { StepService.getRecentStepCount180Min() }
             it.autoIsf = autoIsfFactors.finiteOnly()

@@ -26,7 +26,8 @@ data class AutoIsfFactors(
     var smbOn: Boolean? = null,
     var smbOffReason: String? = null,
     var steps15: Int? = null,
-    var steps180: Int? = null
+    var steps180: Int? = null,
+    var smbRatio: Double? = null
 ) {
 
     /**
@@ -45,7 +46,8 @@ data class AutoIsfFactors(
         smbOn = smbOn,
         smbOffReason = smbOffReason,
         steps15 = steps15,
-        steps180 = steps180
+        steps180 = steps180,
+        smbRatio = smbRatio.finiteOrNull()
     )
 
     private fun Double?.finiteOrNull(): Double? = this?.takeIf { it.isFinite() }

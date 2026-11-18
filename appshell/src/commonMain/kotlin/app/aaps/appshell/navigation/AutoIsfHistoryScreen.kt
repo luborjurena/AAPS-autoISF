@@ -42,7 +42,7 @@ internal fun AutoIsfHistoryScreen(
         if (rows == null) CircularProgressIndicator()
         else if (rows.isEmpty()) Text("—")
         else Column(Modifier.horizontalScroll(rememberScrollState())) {
-            HistoryCells(listOf("Time", "BGL", "Final", "acce", "bg", "pp", "dura", "SMB", "iobT", "acce", "Δ", "SΔ", "Req", "TBR", "S5", "S15", "S30", "S60", "S180"))
+            HistoryCells(listOf("Time", "BGL", "Final", "acce", "bg", "pp", "dura", "SMB", "SMBR", "iobT", "acce", "Δ", "SΔ", "Req", "TBR", "S5", "S15", "S30", "S60", "S180"))
             LazyColumn {
                 items(rows) { row ->
                     val rt = row.rawData() as RT
@@ -51,7 +51,7 @@ internal fun AutoIsfHistoryScreen(
                     val p = row.oapsProfileAutoIsf
                     HistoryCells(listOf(date.timeString(row.date), profile.fromMgdlToStringInUnits(g.glucose),
                         ratio(f.finalIsf), ratio(f.acceIsf), ratio(f.bgIsf), ratio(f.ppIsf), ratio(f.duraIsf),
-                        number(rt.units?.takeUnless { it == 0.0 }), number(f.iobThEffective), number(f.parabolaRaw),
+                        number(rt.units?.takeUnless { it == 0.0 }), number(f.smbRatio), number(f.iobThEffective), number(f.parabolaRaw),
                         profile.fromMgdlToSignedStringInUnits(g.delta), profile.fromMgdlToSignedStringInUnits(g.shortAvgDelta),
                         number(rt.insulinReq?.takeUnless { it == 0.0 }), number(rt.rate)) +
                         listOf(p?.recent_steps_5_minutes, f.steps15, p?.recent_steps_30_minutes, p?.recent_steps_60_minutes, f.steps180)
