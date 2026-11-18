@@ -529,9 +529,15 @@ fun NavGraphBuilder.appNavGraph(
         )
     }
 
+    composable(AppRoute.AutoIsfHistory.route) {
+        AutoIsfHistoryScreen(persistenceLayer, profileManagementViewModel.dateUtil, profileManagementViewModel.profileUtil,
+            profileManagementViewModel.decimalFormatter) { navController.safePopBackStack() }
+    }
+
     composable(AppRoute.HistoryBrowser.route) {
         HistoryScreen(
             title = stringResource(MainStrings.nav_history_browser),
+            onAutoIsfHistory = { navController.navigate(AppRoute.AutoIsfHistory.route) },
             onNavigateBack = { navController.safePopBackStack() }
         )
     }

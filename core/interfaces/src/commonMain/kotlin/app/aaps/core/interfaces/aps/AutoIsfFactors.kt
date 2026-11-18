@@ -24,7 +24,9 @@ data class AutoIsfFactors(
     var parabolaSmoothed: Double? = null,
     /** AutoISF fork: whether this run allowed SMBs (null: not known), and if not, why - for the triangle in the loop chip. */
     var smbOn: Boolean? = null,
-    var smbOffReason: String? = null
+    var smbOffReason: String? = null,
+    var steps15: Int? = null,
+    var steps180: Int? = null
 ) {
 
     /**
@@ -41,7 +43,9 @@ data class AutoIsfFactors(
         parabolaRaw = parabolaRaw.finiteOrNull(),
         parabolaSmoothed = parabolaSmoothed.finiteOrNull(),
         smbOn = smbOn,
-        smbOffReason = smbOffReason
+        smbOffReason = smbOffReason,
+        steps15 = steps15,
+        steps180 = steps180
     )
 
     private fun Double?.finiteOrNull(): Double? = this?.takeIf { it.isFinite() }

@@ -67,7 +67,8 @@ fun HistoryScreen(
     title: String,
     onNavigateBack: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: HistoryViewModel = metroViewModel()
+    viewModel: HistoryViewModel = metroViewModel(),
+    onAutoIsfHistory: (() -> Unit)? = null
 ) {
     // viewModelFactory/initializer rather than an anonymous ViewModelProvider.Factory: the factory's
     // `create` takes a JVM `Class`, which does not exist in shared code. This form is also honest -
@@ -94,6 +95,7 @@ fun HistoryScreen(
         topBar = {
             AapsTopAppBar(
                 title = { Text(title) },
+                actions = { onAutoIsfHistory?.let { androidx.compose.material3.TextButton(onClick = it) { Text("AutoISF") } } },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(
