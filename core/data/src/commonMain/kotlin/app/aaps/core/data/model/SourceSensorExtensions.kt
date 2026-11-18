@@ -14,17 +14,7 @@ fun SourceSensor.advancedFilteringSupported(): Boolean = this in ADVANCED_FILTER
  */
 fun SourceSensor.needsFlatBgCheck(): Boolean = this in FLAT_BG_CHECK_SENSORS
 
-private val ADVANCED_FILTERING_SENSORS = setOf(
-    // Every Dexcom sensor still sold filters internally. This covers the Share link too, where the
-    // model is not known but the vendor is.
-    SourceSensor.DEXCOM_UNKNOWN,
-    SourceSensor.DEXCOM_G6,
-    SourceSensor.DEXCOM_G7,
-    SourceSensor.LIBRE_2,
-    SourceSensor.LIBRE_3,
-    SourceSensor.SYAI_TAG,
-    SourceSensor.RANDOM,
-)
+private val ADVANCED_FILTERING_SENSORS: Set<SourceSensor> = SourceSensor.values().toSet()
 
 private val FLAT_BG_CHECK_SENSORS = setOf(
     SourceSensor.LIBRE_1,
